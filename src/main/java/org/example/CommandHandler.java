@@ -13,6 +13,7 @@ public class CommandHandler
         System.out.println("GET <индекс> - вывести строку");
         System.out.println("UPDATE <индекс> <строка> - обновить текст строки");
         System.out.println("DELETE <индекс> - удалить строку");
+        System.out.println("QUIT - выход");
         System.out.println("|==================================================|");
     }
     public static void process(String command)
