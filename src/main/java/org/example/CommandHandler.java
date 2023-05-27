@@ -19,6 +19,9 @@ public class CommandHandler
     public static void process(String command)
     {
         ArrayList<String> commandElements=splitTheCommand(command);
+
+       // for(String e:commandElements) System.out.println(e);
+
         executeCommand(commandElements);
     }
 
@@ -30,7 +33,7 @@ public class CommandHandler
         try {
             switch (command) {
                 case "create":
-                    str = getStringPArameter(commandElements, 1);
+                    str = getStringParameter(commandElements, 1);
                     StringStorage.add(str);
                     break;
                 case "get":
@@ -39,7 +42,7 @@ public class CommandHandler
                     break;
                 case "update":
                     indx = getIntegerParameter(commandElements.get(1));
-                    str = getStringPArameter(commandElements, 2);
+                    str = getStringParameter(commandElements, 2);
                     StringStorage.update(indx,str);
                     break;
                 case "delete":
@@ -55,6 +58,8 @@ public class CommandHandler
             }
         }catch(IllegalArgumentException ex){
             System.out.println(ex.getMessage());
+        }catch(IndexOutOfBoundsException ex){
+            errorMessage("The Argument is Empty!");
         }
     }
 
@@ -91,10 +96,10 @@ public class CommandHandler
         return res;
     }
 
-    private static String getStringPArameter(ArrayList<String> parameters,int startIndex) throws IllegalArgumentException
+    private static String getStringParameter(ArrayList<String> parameters,int startIndex) throws IndexOutOfBoundsException
     {
         String res="";
-        if(startIndex>parameters.size()){throw new IllegalArgumentException("The String is Empty!");}
+        if(startIndex>=parameters.size()){throw new IndexOutOfBoundsException();}
         for (int i = startIndex; i < parameters.size(); i++) {
             res+=parameters.get(i)+" ";
         }
