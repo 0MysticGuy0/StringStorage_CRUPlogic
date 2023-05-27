@@ -4,28 +4,17 @@ import java.util.HashMap;
 
 public class StringStorage
 {
-    private static HashMap<Integer,String> storage=new HashMap<>();
+    private final HashMap<Integer,String> storage=new HashMap<>();
+    private int freeId=0;
 
-    private static Integer getFreeId()
+    public void add(String str)
     {
-        Integer lastId=0;
-        for(Integer id:storage.keySet())
-        {
-            if(id>lastId) return lastId;
-            if (storage.get(id) == null)    return id;
-            lastId++;
-        }
-        return lastId;
+        storage.put(freeId,str);
+        System.out.println("String saved with id = "+ freeId);
+        freeId++;
     }
 
-    public static void add(String str)
-    {
-        Integer id=getFreeId();
-        storage.put(id,str);
-        System.out.println("String saved with id = "+ id);
-    }
-
-    public static String get(Integer id)
+    public String get(Integer id) throws IllegalArgumentException
     {
         if(storage.containsKey(id))
         {
@@ -33,22 +22,21 @@ public class StringStorage
             System.out.println(str);
             return str;
         }
-        System.out.println("There is no string with id "+id+" in the storage!!!");
-        return null;
+        throw new IllegalArgumentException("There is no string with id "+id+" in the storage!!!");
     }
 
-    public static void update(Integer id,String str)
+    public void update(Integer id,String str) throws IllegalArgumentException
     {
         if(storage.containsKey(id))
         {
             storage.put(id,str);
             System.out.println("String with id " + id + " was updated");
-            return;
         }
-        System.out.println("There is no string with id "+id+" in the storage!!!");
+        else
+            throw new IllegalArgumentException("There is no string with id "+id+" in the storage!!!");
     }
 
-    public static void delete(Integer id)
+    public void delete(Integer id)  throws IllegalArgumentException
     {
         if(storage.containsKey(id))
         {
@@ -56,6 +44,6 @@ public class StringStorage
             System.out.println("String with id " + id + " was deleted");
             return;
         }
-        System.out.println("There is no string with id "+id+" in the storage!!!");
+        throw new IllegalArgumentException("There is no string with id "+id+" in the storage!!!");
     }
 }
