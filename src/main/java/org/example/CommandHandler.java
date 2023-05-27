@@ -6,6 +6,15 @@ import java.util.HashSet;
 
 public class CommandHandler 
 {
+    public static void printAviableCommands()
+    {
+        System.out.println("|==================================================|");
+        System.out.println("CREATE <строка> - добавить строку");
+        System.out.println("GET <индекс> - вывести строку");
+        System.out.println("UPDATE <индекс> <строка> - обновить текст строки");
+        System.out.println("DELETE <индекс> - удалить строку");
+        System.out.println("|==================================================|");
+    }
     public static void process(String command)
     {
         ArrayList<String> commandElements=splitTheCommand(command);
