@@ -25,6 +25,20 @@ public class StringStorage
         throw new IllegalArgumentException("There is no string with id "+id+" in the storage!!!");
     }
 
+    public HashMap<Integer,String> getAll()
+    {
+        if(storage.size()==0)
+        {
+            System.out.println("The storage is Empty!");
+            return null;
+        }
+        for(Integer i:storage.keySet())
+        {
+            System.out.println("String "+i+" : "+storage.get(i));
+        }
+        return storage;
+    }
+
     public void update(Integer id,String str) throws IllegalArgumentException
     {
         if(storage.containsKey(id))

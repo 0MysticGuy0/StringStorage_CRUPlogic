@@ -46,8 +46,14 @@ public class CommandProcessor
                     storage.add(str);
                     break;
                 case "get":
-                    indx = parser.getIntegerParameter(commandElements.get(1));
-                    storage.get(indx);
+                    if(commandElements.size()==1)
+                    {
+                        storage.getAll();
+                    }
+                    else {
+                        indx = parser.getIntegerParameter(commandElements.get(1));
+                        storage.get(indx);
+                    }
                     break;
                 case "update":
                     indx = parser.getIntegerParameter(commandElements.get(1));
